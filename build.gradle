@@ -33,6 +33,9 @@ dependencies {
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
 
     // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.5.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.8.2.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.0.2.RELEASE'

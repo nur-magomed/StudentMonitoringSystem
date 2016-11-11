@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.innopolis.nur.dao.UserDao;
 import ru.innopolis.nur.model.Role;
 import ru.innopolis.nur.model.User;
+import ru.innopolis.nur.repository.UserRepository;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,10 +25,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user=userDao.findByUsername(username);
+        User user=userRepository.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities=new HashSet<>();
 

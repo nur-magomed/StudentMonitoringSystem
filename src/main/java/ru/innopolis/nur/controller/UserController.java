@@ -31,6 +31,7 @@ public class UserController {
     @Autowired
     private StudentService studentService;
 
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model){
         model.addAttribute("userForm", new User());

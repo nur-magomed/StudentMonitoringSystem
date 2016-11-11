@@ -7,6 +7,8 @@ import ru.innopolis.nur.dao.RoleDao;
 import ru.innopolis.nur.dao.UserDao;
 import ru.innopolis.nur.model.Role;
 import ru.innopolis.nur.model.User;
+import ru.innopolis.nur.repository.RoleRepository;
+import ru.innopolis.nur.repository.UserRepository;
 import ru.innopolis.nur.service.UserService;
 
 import java.util.HashSet;
@@ -18,10 +20,16 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
+//    @Autowired
+//    private UserDao userDao;
+//    @Autowired
+//    private RoleDao roleDao;
+
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
+
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -30,13 +38,13 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword())); //шифруем пароль
         Set<Role> roles= new HashSet<>();
-        roles.add(roleDao.getOne(1L)); //присваиваем каждому новому пользователю роль user
+        roles.add(roleRepository.findOne(1L)); //присваиваем каждому новому пользователю роль user
         user.setRoles(roles);
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Override
     public User findByUserName(String username) {
-        return userDao.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 }

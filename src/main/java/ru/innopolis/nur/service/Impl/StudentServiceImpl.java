@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.innopolis.nur.dao.StudentDao;
 import ru.innopolis.nur.model.Student;
+import ru.innopolis.nur.repository.StudentRepository;
 import ru.innopolis.nur.service.StudentService;
 
 import java.util.List;
@@ -15,10 +16,10 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    StudentDao studentDao;
+    StudentRepository studentRepository;
 
     @Override
     public List<Student> getStudents() {
-        return studentDao.findAll();
+        return (List) studentRepository.findAll();
     }
 }
